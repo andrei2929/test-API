@@ -1,0 +1,100 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Elrond API",
+    "description": "API for fetching details about tokens on the Elrond network",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.elrond.com",
+      "description": "Elrond API Server"
+    }
+  ],
+  "paths": {
+    "/mex/tokens/{tokenIdentifier}": {
+      "get": {
+        "summary": "Get token details",
+        "description": "Fetches details about a specific token on the Elrond network.",
+        "parameters": [
+          {
+            "name": "tokenIdentifier",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the token (e.g., 'HTM-f51d55').",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with token details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "identifier": {
+                      "type": "string",
+                      "description": "The unique identifier of the token."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the token."
+                    },
+                    "symbol": {
+                      "type": "string",
+                      "description": "The symbol of the token."
+                    },
+                    "decimals": {
+                      "type": "integer",
+                      "description": "The number of decimals the token supports."
+                    },
+                    "supply": {
+                      "type": "string",
+                      "description": "The total supply of the token."
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "valueUsd": {
+                          "type": "string",
+                          "description": "The price of the token in USD."
+                        },
+                        "change24h": {
+                          "type": "string",
+                          "description": "The 24-hour price change in percentage."
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "identifier": "HTM-f51d55",
+                    "name": "TokenName",
+                    "symbol": "HTM",
+                    "decimals": 18,
+                    "supply": "1000000000000000000000",
+                    "price": {
+                      "valueUsd": "0.01",
+                      "change24h": "-0.5"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          },
+          "404": {
+            "description": "Token not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}
