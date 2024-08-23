@@ -1,0 +1,39 @@
+openapi: 3.0.0
+info:
+  title: MultiversX Token Transactions API
+  description: API to count successful transactions for a specific token on the MultiversX blockchain.
+  version: 1.0.0
+servers:
+  - url: https://api.elrond.com
+paths:
+  /tokens/{tokenId}/transactions/count:
+    get:
+      summary: Get transaction count for a token
+      parameters:
+        - name: tokenId
+          in: path
+          required: true
+          description: The identifier of the token (e.g., HTM-f51d55).
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          description: Filter transactions by status (e.g., success).
+          schema:
+            type: string
+            enum:
+              - success
+              - pending
+              - failed
+      responses:
+        '200':
+          description: Successful response with transaction count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 12345
