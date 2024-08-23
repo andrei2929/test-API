@@ -1,25 +1,19 @@
 openapi: 3.0.0
 info:
-  title: MultiversX Token Transactions API
-  description: API to count successful transactions for a specific token on the MultiversX blockchain.
+  title: HTM Token Transaction Count API
+  description: API to get the transaction count for the HTM-f51d55 token.
   version: 1.0.0
 servers:
   - url: https://api.elrond.com
 paths:
-  /tokens/{tokenId}/transactions/count:
+  /tokens/HTM-f51d55/transactions/count:
     get:
-      summary: Get transaction count for a token
+      summary: Get transaction count for HTM-f51d55 token
       parameters:
-        - name: tokenId
-          in: path
-          required: true
-          description: The identifier of the token (e.g., HTM-f51d55).
-          schema:
-            type: string
         - name: status
           in: query
-          required: false
-          description: Filter transactions by status (e.g., success).
+          required: true
+          description: The status of the transactions (e.g., success)
           schema:
             type: string
             enum:
@@ -37,3 +31,4 @@ paths:
                   count:
                     type: integer
                     example: 12345
+
