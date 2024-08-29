@@ -14,7 +14,7 @@
   "paths": {
     "/mex/tokens/{tokenIdentifier}": {
       "get": {
-        "summary": "Get token details",
+        "summary": "Use this action to get the price of HTM token, or HTM-f51d55, they are the same",
         "description": "Fetches details about a specific token on the Elrond network.",
         "parameters": [
           {
